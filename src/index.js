@@ -15,8 +15,8 @@ const  db = require('./db/mongo_init');
 require('dotenv').config();
 
 // importing logger
-//const logger = require('./logger/index');
-//const statusMonitor = require('./logger/statusMonitor');
+const logger = require('./logger/index');
+const statusMonitor = require('./logger/statusMonitor');
 
 // importing error handler middleware
 const {
@@ -34,7 +34,7 @@ const { port , timeDelay } = require('./config');
    const app = express();
 
 // server health monitor
- //  app.use(statusMonitor);
+ app.use(statusMonitor);
 
 // enable cors
 app.use('*',cors());
@@ -81,22 +81,22 @@ app.use(ErrorResponse);
 // intialize server
 const listen = () => {
   app.listen(port,()=>{
-   // console.log('server running');
-    //   logger.info(`Server is listening on port : ${port}`);
+   console.log('server running');
+  logger.info(`Server is listening on port : ${port}`);
   });
 }
 
 //start mongodb connection
   db()
   .on('error', err => { 
-   //  logger.error('Failed to connect to mongo on startup - retrying in '+ timeDelay +' sec');
+      logger.error('Failed to connect to mongo on startup - retrying in '+ timeDelay +' sec');
   })
   .on('disconnected', () => { 
-   //  setTimeout(connect, timeDelay * 1000 )
+     setTimeout(connect, timeDelay * 1000 )
   })
   .once('open', () => {
       console.log(' MongoDB connected Successfully!!!')
-   //   logger.info(' MongoDB connected Successfully!!!')
+      logger.info(' MongoDB connected Successfully!!!')
       // start server
       listen();
   });
