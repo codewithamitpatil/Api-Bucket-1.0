@@ -61,7 +61,7 @@ return createLogger({
                               options:mongodbLogOptions,
                               collection:'ProdExceptionLogs'
                           }),
-                     //new Mail() 
+                     new Mail() 
     ],
     exitOnError: false
      
