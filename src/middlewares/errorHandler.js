@@ -7,8 +7,8 @@ module.exports =
  // all error handler
  ErrorResponse:async(err,req,res,next)=>{
 
-console.log(err);
-   // err.status = err.status || 500;
+
+    err.status = err.status || 500;
 
     // for joi validation errors
     if(err.isJoi)
