@@ -36,7 +36,9 @@ const Signup = async(valData) => {
     const user         = new  authModel(valData);
     const savedUser    = user.save();               
     
-    Send_Otp(email);
+     Send_Otp(email).then((data)=>{
+   
+     });
 
     return  resolve('ok')
 
@@ -47,8 +49,6 @@ const Signup = async(valData) => {
 const Login = async(valData) => {
 
 
-  try{
-
     const uid = await authModel.Authentication(valData);    
     const AccessToken  = await jwtToken.SignAccessToken(uid); 
 
@@ -57,11 +57,7 @@ const Login = async(valData) => {
     return { AccessToken , RefreshToken };
       
    
-  }catch(e)
-  { 
-    console.log(e);
-     return e;
-  }
+ 
 
 };
 
