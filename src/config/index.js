@@ -58,7 +58,7 @@ const production = {
 
   logLevel:'silly',
   logPath : './logs/',
-  port: process.env.PORT || 3001,
+  port: process.env.PORT || 3000,
   mongodb:'mongodb+srv://amit_1:Amit123@authentication.qq25p.mongodb.net/auth?retryWrites=true&w=majority',
   mongodbOptions: {
     useNewUrlParser: true,
