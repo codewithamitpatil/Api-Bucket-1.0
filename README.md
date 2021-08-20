@@ -13,8 +13,7 @@
     <br />
     Developed By : Amit Gujar Patil
     <br />  <br />  
-    <a href="https://github.com/codewithamitpatil/Authentication-Rest-Apis-using-MEAN-Stack"><strong>Version 0.1 is here »</strong></a>
-    <br />
+     <br />
   
  <a href="https://documenter.getpostman.com/view/11617094/TzzBqwCX">Api Documentation</a>
     <br />
