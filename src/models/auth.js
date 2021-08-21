@@ -2,6 +2,7 @@
    const mongoose    = require('mongoose');
    const bcrypt      = require('bcrypt');
    const httpErrors  = require('http-errors');
+   const passwordHash = require('password-hash');
 
 // User Schema
    const UserSchema = mongoose.Schema({
@@ -31,10 +32,10 @@
 // for password hashing
    UserSchema.pre('save',async function(next){
   
-      const salt       =  await bcrypt.genSalt(10);
-      const hashpass   =  await bcrypt.hash(this.password,salt);
-      this.password    =  hashpass ;   
-     
+  
+    //  this.password    =  hashpass ;   
+      this.password = passwordHash.generate(this.password);
+       console.log(this.password);
       return next();
 
    });
@@ -52,7 +53,8 @@
 
 
   const passCheck = async(pass1,pass2)=>{
-     const temp = await bcrypt.compare(pass1,pass2);
+     const temp = passwordHash.verify(pass1,pass2);
+     console.log(temp);
      return temp;
   }
 
@@ -109,7 +111,7 @@
     
     const user = await this.findOne({ _id:data.id });
       
-    const passcheck = await bcrypt.compare(data.password,user.password);
+    const passcheck = await passwordHash.verify(data.password,user.password);
   
     if(!passcheck)
     {
@@ -117,8 +119,8 @@
          return;
     }
     
-    const salt      =  await bcrypt.genSalt(10);
-    const hashpass  =  await bcrypt.hash(data.newpassword,salt);
+
+    const hashpass  =  await passwordHash.generate(data.newpassword,salt);
  
     return hashpass;
 
