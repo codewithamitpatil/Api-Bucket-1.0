@@ -1,6 +1,6 @@
 
    const mongoose    = require('mongoose');
-   const bcrypt      = require('bcrypt');
+
    const httpErrors  = require('http-errors');
    const passwordHash = require('password-hash');
 
@@ -111,7 +111,7 @@
     
     const user = await this.findOne({ _id:data.id });
       
-    const passcheck = await passwordHash.verify(data.password,user.password);
+    const passcheck =  passwordHash.verify(data.password,user.password);
   
     if(!passcheck)
     {
@@ -120,7 +120,7 @@
     }
     
 
-    const hashpass  =  await passwordHash.generate(data.newpassword,salt);
+    const hashpass  =  passwordHash.generate(data.newpassword);
  
     return hashpass;
 
