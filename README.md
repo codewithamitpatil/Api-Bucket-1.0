@@ -32,8 +32,16 @@
 ## What I Did In This Repo ???
 
 This is an Production Ready Facke API Place System .<br/>
-This project is built on REST Architecture on top of <br/>MVC AND 3 TIER ARCHITECTURE ,<br/> Along with all best practises.<br/>
+This project is built on Microservice Architecture Along with all best practises.<br/>
 <br>This project is hosted on Heroku
+
+
+<br>
+Custom Logger - Genrate the logs with winston and morgan and collecting this logs into elastic search and visualize with kibana<br>
+Tracer - Genrate traces with jaeger and and montior this traces in jaeger ui<br>
+Monitor - To monitor application i use express monitior<br><br>
+
+
 
 I created an creative 404 Error page <br/>
 I took care of all security concerns <br/>
